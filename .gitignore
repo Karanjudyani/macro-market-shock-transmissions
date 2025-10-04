@@ -1,0 +1,38 @@
+# Python bytecode
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+*.so
+
+# Virtual environments
+venv/
+.env/
+.venv/
+
+# Jupyter/IPython
+.ipynb_checkpoints/
+*.ipynb_checkpoint
+
+# Logs & temp files
+*.log
+*.out
+*.err
+*.tmp
+*.swp
+*.swo
+
+# OS-specific
+.DS_Store
+Thumbs.db
+
+# Data (raw + large CSVs) — keep processed small CSVs if needed
+data/raw/
+data/processed/
+
+# Results (optional: if you only want to keep code, not outputs)
+# results/
+
+# Environment/IDE
+*.idea/
+*.vscode/
