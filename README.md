@@ -67,10 +67,7 @@ Date range: **Dec 2020 – Jun 2021** (covers estimation + event windows).
 
 ## 🧑‍💻 Author
 Karan Judyani  
-- Interests: International Macro, Asset Pricing, Quantitative Finance.  
-- Repo doubles as:  
-  - **Research demonstration** for Economics/Finance PhD admissions.  
-  - **Quant job portfolio project** (Python, event studies, market impact analysis).
+- Interests: International Macro, Asset Pricing, Quantitative Finance.    
 
 ---
 
