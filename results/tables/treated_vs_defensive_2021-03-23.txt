@@ -1,0 +1,7 @@
+Event: 2021-03-23
+TREATED sectors: ['Autos', 'Chemicals', 'Energy', 'Infrastructure', 'Metals']
+DEFENSIVE sectors: ['Cement', 'FMCG', 'IT', 'Pharma', 'Telecom', 'Utilities']
+Mean CAR_10d (treated)   = -0.0038  (n=16)
+Mean CAR_10d (defensive) = 0.0479  (n=21)
+Welch t-stat (treated - defensive) = -1.797
+Note: This is a descriptive gap; formal p-values need df calc or bootstrap.
