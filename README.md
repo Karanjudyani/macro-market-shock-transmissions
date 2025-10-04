@@ -65,6 +65,13 @@ Date range: **Dec 2020 – Jun 2021** (covers estimation + event windows).
 
 *Figures available in `results/figures/`.*
 
+## 🧑‍💻 Author
+Karan Judyani  
+- Interests: International Macro, Asset Pricing, Quantitative Finance.  
+- Repo doubles as:  
+  - **Research demonstration** for Economics/Finance PhD admissions.  
+  - **Quant job portfolio project** (Python, event studies, market impact analysis).
+
 ---
 
 ## 🛠️ How to Run
@@ -80,9 +87,4 @@ python src/data_download.py --start 2020-12-01 --end 2021-06-30 && \
 python src/event_study.py --event_date 2021-03-23 --pre_days 120 --post_days 20 --car_k1 5 --car_k2 10 && \
 python src/sector_analysis.py --event_date 2021-03-23
 
-## 🧑‍💻 Author
-Karan Judyani  
-- Interests: International Macro, Asset Pricing, Quantitative Finance.  
-- Repo doubles as:  
-  - **Research demonstration** for Economics/Finance PhD admissions.  
-  - **Quant job portfolio project** (Python, event studies, market impact analysis).
+
