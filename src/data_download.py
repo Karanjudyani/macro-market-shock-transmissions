@@ -4,18 +4,18 @@
 #
 # Outputs:
 #   data/raw/merged_market_daily.csv     (prices, wide)
-#   data/raw/ticker_sectors.csv          (ticker, sector, industry)
+#   data/raw/ticker_sectors.csv          (ticker, sector, industry, exposure_group, source)
+#   data/raw/all_tickers.csv             (union of NIFTY50 + extra list)
 
 import argparse, os, time
 import pandas as pd
 import yfinance as yf
+from pathlib import Path
 
 # ---- Paths ----
-ROOT = os.path.dirname(os.path.abspath(__file__))
-DATA_DIR = (os.path.join(os.path.dirname(ROOT), "data", "raw")
-            if os.path.basename(ROOT) == "src"
-            else os.path.join(ROOT, "data", "raw"))
-os.makedirs(DATA_DIR, exist_ok=True)
+ROOT = Path(__file__).resolve().parent
+DATA_DIR = (ROOT.parent / "data" / "raw") if ROOT.name == "src" else (ROOT / "data" / "raw")
+DATA_DIR.mkdir(parents=True, exist_ok=True)
 
 # ---- Universe: NIFTY 50 tickers ----
 NIFTY50 = [
@@ -74,7 +74,7 @@ def fetch_yahoo_prices(tickers, start, end):
         try:
             df = yf.download(t, start=start, end=end, auto_adjust=True, progress=False)
             if df.empty:
-                print(f"[WARN] no data for {t}")
+                print(f"[WARN] No data for {t}")
                 continue
             if isinstance(df.columns, pd.MultiIndex):
                 df.columns = df.columns.get_level_values(0)
@@ -90,36 +90,64 @@ def fetch_sectors(tickers):
     for t in tickers:
         sector, industry = None, None
         try:
-            # yfinance sometimes needs a small pause to avoid rate limits
             info = yf.Ticker(t).get_info()  # newer yfinance
             sector = info.get("sector") or info.get("industryDisp") or info.get("industry")
             industry = info.get("industry") or info.get("industryDisp")
-            time.sleep(0.15)
-        except Exception as e:
+            time.sleep(0.15)  # be gentle to the API
+        except Exception:
             pass
         if not sector:
             sector = FALLBACK_SECTOR.get(t, "Unmapped")  # last resort
         rows.append({"ticker": t, "sector": sector, "industry": industry if industry else ""})
-    meta = pd.DataFrame(rows)
-    return meta
+    return pd.DataFrame(rows)
 
 def main(start, end):
+    # --- Load extra exposed universe if present ---
+    extra_path = DATA_DIR / "extra_exposed_tickers.csv"
+    if extra_path.exists():
+        extra = pd.read_csv(extra_path)
+        if "ticker" not in extra.columns:
+            raise SystemExit("extra_exposed_tickers.csv must have a 'ticker' column.")
+        extra["source"] = "extra"
+        # normalize col
+        if "exposure_group" not in extra.columns:
+            extra["exposure_group"] = "unknown"
+    else:
+        extra = pd.DataFrame(columns=["ticker","exposure_group","source"])
+
+    # Base NIFTY list → DataFrame
+    base = pd.DataFrame({"ticker": NIFTY50, "source": "nifty50"})
+    base["exposure_group"] = "none"
+
+    # Union
+    universe = pd.concat([base, extra], ignore_index=True).drop_duplicates(subset=["ticker"])
+    universe.to_csv(DATA_DIR / "all_tickers.csv", index=False)
+    print(f"[INFO] Loaded {len(universe)} tickers (by source: {universe['source'].value_counts().to_dict()})")
+
     # 1) Market + macros
-    base = fetch_yahoo_prices([INDEX_TICKER] + MACRO_TICKERS, start, end)
+    base_df = fetch_yahoo_prices([INDEX_TICKER] + MACRO_TICKERS, start, end)
 
     # 2) Equities
-    eq = fetch_yahoo_prices(NIFTY50, start, end)
+    eq_df = fetch_yahoo_prices(universe["ticker"].tolist(), start, end)
 
-    # 3) Merge
-    merged = base.join(eq, how="outer").ffill()
-    merged_path = os.path.join(DATA_DIR, "merged_market_daily.csv")
+    # 3) Merge (market+macro, then equities)
+    merged = base_df.join(eq_df, how="outer").ffill()
+    merged_path = DATA_DIR / "merged_market_daily.csv"
     merged.to_csv(merged_path, index=True)
     print(f"[OK] Saved merged dataset {merged.shape} → {merged_path}")
 
-    # 4) Sector metadata
-    meta = fetch_sectors([c for c in eq.columns])  # only those successfully fetched
-    meta_path = os.path.join(DATA_DIR, "ticker_sectors.csv")
+    # 4) Sector metadata (only for successfully fetched equities)
+    fetched_equities = [c for c in eq_df.columns]
+    meta = fetch_sectors(fetched_equities)
+
+    # Add exposure_group and source info from universe
+    meta = meta.merge(universe[["ticker","exposure_group","source"]], on="ticker", how="left")
+    meta["exposure_group"] = meta["exposure_group"].fillna("none")
+    meta["source"] = meta["source"].fillna("unknown")
+
+    meta_path = DATA_DIR / "ticker_sectors.csv"
     meta.to_csv(meta_path, index=False)
+
     # Warn if any are unmapped
     unmapped = meta[meta["sector"] == "Unmapped"]["ticker"].tolist()
     if unmapped:
@@ -132,3 +160,4 @@ if __name__ == "__main__":
     ap.add_argument("--end", type=str, default="2021-06-30")
     args = ap.parse_args()
     main(args.start, args.end)
+

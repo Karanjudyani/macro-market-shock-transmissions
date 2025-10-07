@@ -1,48 +1,58 @@
-ticker,sector,industry
-ADANIPORTS.NS,Industrials,Marine Shipping
-ASIANPAINT.NS,Basic Materials,Specialty Chemicals
-AXISBANK.NS,Financial Services,Banks - Regional
-BAJAJ-AUTO.NS,Consumer Cyclical,Auto Manufacturers
-BAJFINANCE.NS,Financial Services,Credit Services
-BAJAJFINSV.NS,Financial Services,Financial Conglomerates
-BHARTIARTL.NS,Communication Services,Telecom Services
-BPCL.NS,Energy,Oil & Gas Refining & Marketing
-BRITANNIA.NS,Consumer Defensive,Packaged Foods
-CIPLA.NS,Healthcare,Drug Manufacturers - Specialty & Generic
-COALINDIA.NS,Energy,Thermal Coal
-DIVISLAB.NS,Healthcare,Drug Manufacturers - Specialty & Generic
-DRREDDY.NS,Healthcare,Drug Manufacturers - Specialty & Generic
-EICHERMOT.NS,Consumer Cyclical,Auto Manufacturers
-GRASIM.NS,Basic Materials,Building Materials
-HCLTECH.NS,Technology,Information Technology Services
-HDFCBANK.NS,Financial Services,Banks - Regional
-HEROMOTOCO.NS,Consumer Cyclical,Auto Manufacturers
-HINDALCO.NS,Basic Materials,Aluminum
-HINDUNILVR.NS,Consumer Defensive,Household & Personal Products
-ICICIBANK.NS,Financial Services,Banks - Regional
-INDUSINDBK.NS,Financial Services,Banks - Regional
-INFY.NS,Technology,Information Technology Services
-IOC.NS,Energy,Oil & Gas Refining & Marketing
-ITC.NS,Consumer Defensive,Tobacco
-JSWSTEEL.NS,Basic Materials,Steel
-KOTAKBANK.NS,Financial Services,Banks - Regional
-LT.NS,Industrials,Engineering & Construction
-M&M.NS,Consumer Cyclical,Auto Manufacturers
-MARUTI.NS,Consumer Cyclical,Auto Manufacturers
-NESTLEIND.NS,Consumer Defensive,Packaged Foods
-NTPC.NS,Utilities,Utilities - Regulated Electric
-ONGC.NS,Energy,Oil & Gas Integrated
-POWERGRID.NS,Utilities,Utilities - Regulated Electric
-RELIANCE.NS,Energy,Oil & Gas Refining & Marketing
-SBIN.NS,Financial Services,Banks - Regional
-SHREECEM.NS,Basic Materials,Building Materials
-SUNPHARMA.NS,Healthcare,Drug Manufacturers - Specialty & Generic
-TATACONSUM.NS,Consumer Defensive,Packaged Foods
-TATAMOTORS.NS,Consumer Cyclical,Auto Manufacturers
-TATASTEEL.NS,Basic Materials,Steel
-TCS.NS,Technology,Information Technology Services
-TECHM.NS,Technology,Information Technology Services
-TITAN.NS,Consumer Cyclical,Luxury Goods
-ULTRACEMCO.NS,Basic Materials,Building Materials
-UPL.NS,Basic Materials,Agricultural Inputs
-WIPRO.NS,Technology,Information Technology Services
+ticker,sector,industry,exposure_group,source
+ADANIPORTS.NS,Industrials,Marine Shipping,none,nifty50
+ASIANPAINT.NS,Basic Materials,Specialty Chemicals,none,nifty50
+AXISBANK.NS,Financial Services,Banks - Regional,none,nifty50
+BAJAJ-AUTO.NS,Consumer Cyclical,Auto Manufacturers,none,nifty50
+BAJFINANCE.NS,Financial Services,Credit Services,none,nifty50
+BAJAJFINSV.NS,Financial Services,Financial Conglomerates,none,nifty50
+BHARTIARTL.NS,Communication Services,Telecom Services,none,nifty50
+BPCL.NS,Energy,Oil & Gas Refining & Marketing,none,nifty50
+BRITANNIA.NS,Consumer Defensive,Packaged Foods,none,nifty50
+CIPLA.NS,Healthcare,Drug Manufacturers - Specialty & Generic,none,nifty50
+COALINDIA.NS,Energy,Thermal Coal,none,nifty50
+DIVISLAB.NS,Healthcare,Drug Manufacturers - Specialty & Generic,none,nifty50
+DRREDDY.NS,Healthcare,Drug Manufacturers - Specialty & Generic,none,nifty50
+EICHERMOT.NS,Consumer Cyclical,Auto Manufacturers,none,nifty50
+GRASIM.NS,Basic Materials,Building Materials,none,nifty50
+HCLTECH.NS,Technology,Information Technology Services,none,nifty50
+HDFCBANK.NS,Financial Services,Banks - Regional,none,nifty50
+HEROMOTOCO.NS,Consumer Cyclical,Auto Manufacturers,none,nifty50
+HINDALCO.NS,Basic Materials,Aluminum,none,nifty50
+HINDUNILVR.NS,Consumer Defensive,Household & Personal Products,none,nifty50
+ICICIBANK.NS,Financial Services,Banks - Regional,none,nifty50
+INDUSINDBK.NS,Financial Services,Banks - Regional,none,nifty50
+INFY.NS,Technology,Information Technology Services,none,nifty50
+IOC.NS,Energy,Oil & Gas Refining & Marketing,none,nifty50
+ITC.NS,Consumer Defensive,Tobacco,none,nifty50
+JSWSTEEL.NS,Basic Materials,Steel,none,nifty50
+KOTAKBANK.NS,Financial Services,Banks - Regional,none,nifty50
+LT.NS,Industrials,Engineering & Construction,none,nifty50
+M&M.NS,Consumer Cyclical,Auto Manufacturers,none,nifty50
+MARUTI.NS,Consumer Cyclical,Auto Manufacturers,none,nifty50
+NESTLEIND.NS,Consumer Defensive,Packaged Foods,none,nifty50
+NTPC.NS,Utilities,Utilities - Regulated Electric,none,nifty50
+ONGC.NS,Energy,Oil & Gas Integrated,none,nifty50
+POWERGRID.NS,Utilities,Utilities - Regulated Electric,none,nifty50
+RELIANCE.NS,Energy,Oil & Gas Refining & Marketing,none,nifty50
+SBIN.NS,Financial Services,Banks - Regional,none,nifty50
+SHREECEM.NS,Basic Materials,Building Materials,none,nifty50
+SUNPHARMA.NS,Healthcare,Drug Manufacturers - Specialty & Generic,none,nifty50
+TATACONSUM.NS,Consumer Defensive,Packaged Foods,none,nifty50
+TATAMOTORS.NS,Consumer Cyclical,Auto Manufacturers,none,nifty50
+TATASTEEL.NS,Basic Materials,Steel,none,nifty50
+TCS.NS,Technology,Information Technology Services,none,nifty50
+TECHM.NS,Technology,Information Technology Services,none,nifty50
+TITAN.NS,Consumer Cyclical,Luxury Goods,none,nifty50
+ULTRACEMCO.NS,Basic Materials,Building Materials,none,nifty50
+UPL.NS,Basic Materials,Agricultural Inputs,none,nifty50
+WIPRO.NS,Technology,Information Technology Services,none,nifty50
+CONCOR.NS,Industrials,Railroads,shipping,extra
+GESHIP.NS,Industrials,Marine Shipping,shipping,extra
+SCI.NS,Industrials,Marine Shipping,shipping,extra
+GPPL.NS,Industrials,Marine Shipping,shipping,extra
+PETRONET.NS,Energy,Oil & Gas Refining & Marketing,oil,extra
+MRPL.NS,Energy,Oil & Gas Refining & Marketing,oil,extra
+COROMANDEL.NS,Basic Materials,Agricultural Inputs,agri,extra
+CHAMBLFERT.NS,Basic Materials,Agricultural Inputs,agri,extra
+PIIND.NS,Basic Materials,Agricultural Inputs,agri,extra
+GODREJAGRO.NS,Consumer Defensive,Packaged Foods,agri,extra
